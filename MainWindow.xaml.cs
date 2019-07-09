@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -79,8 +80,7 @@ namespace FS_Explorer
             }
             else if (item.Tag is FileInfo)
             {
-                DriveInfo drive = (DriveInfo)item.Tag;
-                dir = drive.RootDirectory;
+                dir = null;
             }
             else dir = (DirectoryInfo)item.Tag;
             try
@@ -112,12 +112,12 @@ namespace FS_Explorer
             if (item.Tag is DirectoryInfo)
             {
                 dir = (DirectoryInfo)item.Tag;
-                System.Diagnostics.Process.Start(dir.FullName);
+                Process.Start(dir.FullName);
             }
             else {
                 file = (FileInfo)item.Tag;
                 content.Content = file.FullName;
-                System.Diagnostics.Process.Start(file.FullName);
+                Process.Start(file.FullName);
             } 
             
 

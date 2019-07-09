@@ -1,0 +1,24 @@
+﻿<Window x:Class="FS_Explorer.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FS_Explorer"
+        mc:Ignorable="d"
+        Title="FS Explorer" Height="450" Width="800" Loaded="Window_Loaded">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="35*"/>
+            <RowDefinition Height="384*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="25*"/>
+            <ColumnDefinition Width="74*"/>
+        </Grid.ColumnDefinitions>
+        <TreeView Grid.Row="1" x:Name="Folders" TreeViewItem.Expanded="Folders_Expanded" TreeViewItem.Selected="Item_Selected"/>
+        <ComboBox Height="25" VerticalAlignment="Top" HorizontalAlignment="Left" Width="190" x:Name="Drivers" SelectionChanged="Drivers_SelectionChanged"/>
+        <ContentControl x:Name="content" Content="" Grid.Column="1" HorizontalAlignment="Left" Grid.Row="1" VerticalAlignment="Top" Height="384" Width="592"/>
+
+
+    </Grid>
+</Window>

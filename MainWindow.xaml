@@ -15,15 +15,15 @@
             <ColumnDefinition Width="25*"/>
             <ColumnDefinition Width="74*"/>
         </Grid.ColumnDefinitions>
-        <TreeView Grid.Row="1" x:Name="Folders" TreeViewItem.Expanded="Folders_Expanded" TreeViewItem.Selected="Item_Selected">
-            <TreeView.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel Orientation="Horizontal">
-                    <Image Source="{Binding Path=Icon}"></Image>
-                    <TextBlock Text="{Binding Path=Name}"/>
+        <TreeView Grid.Row="1"  x:Name="Folders" TreeViewItem.Expanded="Folders_Expanded" ItemsSource="{Binding}" >
+            <TreeView.Resources>
+                <HierarchicalDataTemplate DataType = "{x:Type local:CustomInfo }" ItemsSource = "{Binding Children}">
+                    <StackPanel Orientation = "Horizontal">
+                        <Image Source = "{Binding Icon}"/>
+                        <TextBlock Text = "{Binding Name}"/>
                     </StackPanel>
-                </DataTemplate>
-            </TreeView.ItemTemplate>
+                </HierarchicalDataTemplate>
+            </TreeView.Resources>
         </TreeView>
         <ComboBox Height="25" VerticalAlignment="Top" HorizontalAlignment="Left" Width="190" x:Name="Drivers" SelectionChanged="Drivers_SelectionChanged"/>
         <ContentControl x:Name="content" Content="" Grid.Column="1" HorizontalAlignment="Left" Grid.Row="1" VerticalAlignment="Top" Height="384" Width="592"/>

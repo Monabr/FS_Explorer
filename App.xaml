@@ -2,8 +2,14 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:FS_Explorer"
-             StartupUri="MainWindow.xaml">
+             xmlns:models="clr-namespace:FS_Explorer.Models"
+             xmlns:viewModel="clr-namespace:FS_Explorer.ViewModels"
+             StartupUri="Views\MainWindow.xaml">
     <Application.Resources>
-         
+
+
+        <viewModel:ViewModel x:Key="ViewModel" />
+
+
     </Application.Resources>
 </Application>

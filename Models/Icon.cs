@@ -1,14 +1,13 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Drawing;
+using System.Runtime.InteropServices;
 using System.Windows;
-using System.Windows.Controls;
+using System.Windows.Interop;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Interop;
-using System.Runtime.InteropServices;
 
-namespace FS_Explorer
+namespace FS_Explorer.Models
 {
     internal static class IconUtilities
     {

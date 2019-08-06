@@ -16,7 +16,6 @@ namespace Models
         public string CountOfFolders { get; set; }
         public string CountOfFiles { get; set; }
         public string CreationTime { get; set; }
-        public bool Selected { get; set; }
         bool _isExpanded;
         public bool IsExpanded
         {

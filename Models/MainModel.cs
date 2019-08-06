@@ -3,6 +3,7 @@ using Microsoft.WindowsAPICodePack.Shell;
 using Prism.Mvvm;
 using System;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Drawing;
 using System.Globalization;
 using System.IO;
@@ -143,6 +144,25 @@ namespace Models
             arg.ExpandChildren();
         }
 
+        public void OpenSelected(Folder arg)
+        {
+            Process.Start(arg.FullName);
+        }
+
+        public void OpenSelected(CustomFile arg)
+        {
+            try
+            {
+                Process.Start(arg.FullName);
+            }
+            catch (Exception e)
+            {
+                var args = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.System), "shell32.dll");
+                args += ",OpenAs_RunDLL " + arg.FullName;
+                Process.Start("rundll32.exe", args);
+            }
+           
+        }
 
 
     }

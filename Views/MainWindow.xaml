@@ -28,14 +28,14 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="35*"/>
-            <RowDefinition Height="384*"/>
+            <RowDefinition Height="24*"/>
+            <RowDefinition Height="398*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="5*"/>
             <ColumnDefinition Width="13*"/>
         </Grid.ColumnDefinitions>
-        <TreeView Grid.Row="1" ItemsSource="{Binding TreeOfFolders}" BorderBrush="{x:Null}" >
+        <TreeView Grid.Row="1" ItemsSource="{Binding TreeOfFolders}" BorderBrush="{x:Null}" x:Name="Folders">
             <i:Interaction.Triggers>
                 <i:EventTrigger EventName="SelectedItemChanged" >
                     <i:InvokeCommandAction Command="{Binding ItemSelected}" CommandParameter="{Binding ElementName=Folders, Path=SelectedItem}"/>
@@ -43,7 +43,6 @@
             </i:Interaction.Triggers>
             <TreeView.ItemContainerStyle>
                 <Style BasedOn="{StaticResource {x:Type TreeViewItem}}" TargetType="TreeViewItem">
-                    <Setter Property="IsSelected" Value="{Binding Selected, Mode=TwoWay, UpdateSourceTrigger=Default}" />
                     <Setter Property="IsExpanded" Value="{Binding IsExpanded, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                     <Setter Property="local:Behaviours.ExpandingBehaviour" Value="{Binding DataContext.ExpandingCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type TreeView}}}" />
                 </Style>
@@ -64,8 +63,8 @@
                         <Image Source = "{Binding Icon}"/>
                         <TextBlock Text = "{Binding Name}" VerticalAlignment="Center"/>
                         <StackPanel.ContextMenu>
-                            <ContextMenu Name="Menu">
-                                <MenuItem Header="Развернуть дочерние элементы" Command="{Binding ContextClick, Source={StaticResource ViewModel}}" CommandParameter="{Binding PlacementTarget.Tag , RelativeSource={
+                            <ContextMenu>
+                                <MenuItem Header="Развернуть дочерние элементы" Command="{Binding FolderContextFirst, Source={StaticResource ViewModel}}" CommandParameter="{Binding PlacementTarget.Tag , RelativeSource={
                 RelativeSource FindAncestor, AncestorType={x:Type ContextMenu}}}">
                                     <i:Interaction.Triggers>
                                         <i:EventTrigger EventName="PreviewMouseRightButtonDown">
@@ -73,15 +72,27 @@
                                         </i:EventTrigger>
                                     </i:Interaction.Triggers>
                                 </MenuItem>
-                                <MenuItem Header="Открыть"></MenuItem>
+                                <MenuItem Header="Открыть" Command="{Binding FolderContextSecond, Source={StaticResource ViewModel}}" CommandParameter="{Binding PlacementTarget.Tag , RelativeSource={
+                RelativeSource FindAncestor, AncestorType={x:Type ContextMenu}}}"></MenuItem>
                             </ContextMenu>
                         </StackPanel.ContextMenu>
                     </StackPanel>
                 </HierarchicalDataTemplate>
                 <HierarchicalDataTemplate DataType = "{x:Type models:CustomFile }" >
-                    <StackPanel Orientation = "Horizontal">
+                    <StackPanel Orientation = "Horizontal" Tag="{Binding SelectedItem, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type TreeView}}}">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="PreviewMouseRightButtonDown">
+                                <ei:ChangePropertyAction PropertyName="IsSelected" Value="true" TargetObject="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type TreeViewItem}}}"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
                         <Image Source = "{Binding Icon}"/>
                         <TextBlock Text = "{Binding Name}" VerticalAlignment="Center"/>
+                        <StackPanel.ContextMenu>
+                            <ContextMenu>
+                                <MenuItem Header="Открыть" Command="{Binding FileContext, Source={StaticResource ViewModel}}" CommandParameter="{Binding PlacementTarget.Tag , RelativeSource={
+                RelativeSource FindAncestor, AncestorType={x:Type ContextMenu}}}"></MenuItem>
+                            </ContextMenu>
+                        </StackPanel.ContextMenu>
                     </StackPanel>
                 </HierarchicalDataTemplate>
             </TreeView.Resources>

@@ -179,8 +179,8 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Models\Models.csproj">
-      <Project>{e1739d5f-1fa0-4cff-b26e-db5a940d78f3}</Project>
+    <ProjectReference Include="Models\Models.csproj">
+      <Project>{E1739D5F-1FA0-4CFF-B26E-DB5A940D78F3}</Project>
       <Name>Models</Name>
     </ProjectReference>
   </ItemGroup>

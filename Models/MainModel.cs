@@ -1,4 +1,5 @@
-﻿using Humanizer.Bytes;
+﻿
+using ByteSizeLib;
 using Microsoft.WindowsAPICodePack.Shell;
 using Prism.Mvvm;
 using System;
@@ -11,7 +12,6 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
-using Models;
 
 namespace Models
 {
@@ -161,7 +161,7 @@ namespace Models
                 args += ",OpenAs_RunDLL " + arg.FullName;
                 Process.Start("rundll32.exe", args);
             }
-           
+
         }
 
 

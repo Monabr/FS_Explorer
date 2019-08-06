@@ -4,7 +4,7 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Windows.Media.Imaging;
-using Humanizer.Bytes;
+using ByteSizeLib;
 using Microsoft.WindowsAPICodePack.Shell;
 
 

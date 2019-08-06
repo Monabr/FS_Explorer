@@ -1,4 +1,4 @@
-﻿using FS_Explorer.Models;
+﻿using Models;
 
 namespace FS_Explorer.ViewModels
 {

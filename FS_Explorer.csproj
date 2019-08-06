@@ -119,12 +119,6 @@
     <Compile Include="Behaviours.cs" />
     <Compile Include="EventArgs.cs" />
     <Compile Include="EventRaiser.cs" />
-    <Compile Include="Models\Element.cs" />
-    <Compile Include="Models\CustomFile.cs" />
-    <Compile Include="Models\Folder.cs" />
-    <Compile Include="Models\Icon.cs" />
-    <Compile Include="Models\CustomImage.cs" />
-    <Compile Include="Models\MainModel.cs" />
     <Compile Include="RelayCommand.cs" />
     <Compile Include="ViewModels\CustomImageInfoVM.cs" />
     <Compile Include="ViewModels\ElementVM.cs" />
@@ -183,6 +177,12 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Models\Models.csproj">
+      <Project>{e1739d5f-1fa0-4cff-b26e-db5a940d78f3}</Project>
+      <Name>Models</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

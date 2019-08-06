@@ -1,10 +1,11 @@
-﻿using FS_Explorer.Models;
-using Prism.Mvvm;
+﻿using Prism.Mvvm;
 using System;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
+using Models;
 
 namespace FS_Explorer.ViewModels
 {
@@ -68,11 +69,11 @@ namespace FS_Explorer.ViewModels
             new RelayCommand(
                 x =>
                 {
-                    mainModel.GetMoreTree((RoutedEventArgs)x);
+                    mainModel.Expanded((RoutedEventArgs)x);
                 }, (x) =>
                 {
                     RoutedEventArgs y = (RoutedEventArgs)x;
-                    return y.OriginalSource.ToString().Contains("Folder");
+                    return y.OriginalSource.ToString().Contains("Folder Items.Count:1");
                 });
 
 
@@ -87,7 +88,7 @@ namespace FS_Explorer.ViewModels
                 return _selectionChanged ?? (_selectionChanged = new RelayCommand(
                    x =>
                    {
-                       mainModel.GetTree(x);
+                       mainModel.DriversSelectionChanged(x);
                    }));
             }
         }
@@ -102,12 +103,7 @@ namespace FS_Explorer.ViewModels
                 return _itemSelected ?? (_itemSelected = new RelayCommand(
                            x =>
                            {
-                               Console.WriteLine(@x);
-
-
                                LoadInfo((Element)x);
-
-
                            }));
             }
         }
@@ -119,9 +115,7 @@ namespace FS_Explorer.ViewModels
             {
                 return _contextClick ?? (_contextClick = new RelayCommand(x =>
                 {
-                    Folder viewItem = (Folder)x;
-                    viewItem.IsExpanded = true;
-
+                    mainModel.ExpandChildrenSelected((Folder)x);
                 }));
             }
         }

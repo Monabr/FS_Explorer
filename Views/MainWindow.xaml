@@ -26,7 +26,6 @@
     </Window.Resources>
 
 
-
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="35*"/>
@@ -36,18 +35,20 @@
             <ColumnDefinition Width="5*"/>
             <ColumnDefinition Width="13*"/>
         </Grid.ColumnDefinitions>
-        <TreeView Grid.Row="1"  x:Name="Folders" ItemsSource="{Binding TreeOfFolders}" BorderBrush="{x:Null}" >
+        <TreeView Grid.Row="1" ItemsSource="{Binding TreeOfFolders}" BorderBrush="{x:Null}" >
             <i:Interaction.Triggers>
                 <i:EventTrigger EventName="SelectedItemChanged" >
                     <i:InvokeCommandAction Command="{Binding ItemSelected}" CommandParameter="{Binding ElementName=Folders, Path=SelectedItem}"/>
                 </i:EventTrigger>
             </i:Interaction.Triggers>
-            <TreeView.Resources>
-                <Style TargetType="TreeViewItem">
-                    <Setter Property="IsSelected" Value="{Binding Folder.Selected, Mode=TwoWay, UpdateSourceTrigger=Default}" />
-                    <Setter Property="IsExpanded" Value="{Binding Folder.IsExpanded, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-                    <Setter Property="local:Behaviours.ExpandingBehaviour" Value="{Binding DataContext.ExpandingCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type TreeView}}}"/>
+            <TreeView.ItemContainerStyle>
+                <Style BasedOn="{StaticResource {x:Type TreeViewItem}}" TargetType="TreeViewItem">
+                    <Setter Property="IsSelected" Value="{Binding Selected, Mode=TwoWay, UpdateSourceTrigger=Default}" />
+                    <Setter Property="IsExpanded" Value="{Binding IsExpanded, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                    <Setter Property="local:Behaviours.ExpandingBehaviour" Value="{Binding DataContext.ExpandingCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type TreeView}}}" />
                 </Style>
+            </TreeView.ItemContainerStyle>
+            <TreeView.Resources>
                 <HierarchicalDataTemplate DataType = "{x:Type model:Folder }" ItemsSource = "{Binding Children}">
                     <HierarchicalDataTemplate.ItemContainerStyle>
                         <Style TargetType="TreeViewItem" >
@@ -93,7 +94,5 @@
             </i:Interaction.Triggers>
         </ComboBox>
         <ContentControl Grid.Column="1" Grid.Row="1" Content="{Binding SelectedElement}"/>
-
-
     </Grid>
 </Window>

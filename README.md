@@ -1,5 +1,5 @@
 # What is this?
-It`s a simple file explorer which alows you to see info about folder, file or image.
+It`s a simple file explorer which allows you to see info about folder, file or image.
 
 # What is special about it?
 * It's using MVVM structure
